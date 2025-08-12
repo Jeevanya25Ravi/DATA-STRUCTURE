@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<stdlib.h>
+int size=0;
+int capacity=5;
+int *a;
+
+void insertAtIndex(int e,int pos)
+{
+    if(pos<0||pos>size)
+    {
+        printf("Invalid position");
+        return;
+    }
+    if(size==capacity)
+    {
+        capacity=capacity*2;
+        a=(int *)realloc(a,sizeof(int)*capacity);
+    }
+    for(int i=size;i>pos;i--)
+    {
+        a[i]=a[i-1];
+    }
+    a[pos]=e;
+    size++;
+}
+int main()
+{
+    int data;
+    a=(int *)malloc(sizeof(int)*5);
+    
+    for(int i=0;i<5;i++)
+    {
+        scanf("%d",&data);
+        a[i]=data;
+        size++;
+    }
+    
+    int pos;
+    printf("Enter data to insert: ");
+    scanf("%d",&data);
+    printf("Enter the position: ");
+    scanf("%d",&pos);
+    insertAtIndex(data,pos);
+    
+    for(int i=0;i<size;i++)
+    {
+        printf("%d",a[i]);
+    }
+return 0;
+}
+
+
+
+
+
